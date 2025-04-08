@@ -30,6 +30,8 @@ If all things go well, this will produce an output similar to this:
 }
 ```
 
+## Register an account at RestCSV.com](https://restcsv.com/)
+
 ## Sharing
 
 If you have found value in this service please share it on social media. You can tag me [@jordandalton](https://x.com/jordankdalton) on X, or [jdcarnivore](https://www.reddit.com/user/jdcarnivore) on Reddit.
