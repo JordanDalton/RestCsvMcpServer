@@ -22,7 +22,7 @@ If all things go well, this will produce an output similar to this:
       ],
       "env": [
         {
-          "ANY_ENV_KEY": "<REPLACE>"
+          "RESTCSV_API_KEY": "<REPLACE>"
         }
       ]
     }
