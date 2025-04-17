@@ -19,8 +19,8 @@ while ((match = envRegex.exec(fileContent)) !== null) {
 const structure = {
     mcpServers : {
         "restcsv" : {
-            command : "node",
-            args : [filePath],
+            command : "npx ",
+            args : ['restcsv-mcp-server'],
             env : envVariables
         }
     }

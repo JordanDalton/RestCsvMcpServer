@@ -16,15 +16,13 @@ If all things go well, this will produce an output similar to this:
 {
   "mcpServers": {
     "my-mcp": {
-      "command": "node",
+      "command": "npx",
       "args": [
-        "<thePathToYour>/build/index.js"
+        "restcsv-mcp-server"
       ],
-      "env": [
-        {
-          "RESTCSV_API_KEY": "<REPLACE>"
-        }
-      ]
+      "env": {
+        "RESTCSV_API_KEY": "<REPLACE>"
+      }
     }
   }
 }
