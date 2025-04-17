@@ -6,10 +6,14 @@
   "scripts": {
     "build": "tsc && chmod 755 build/index.js && node showSettings"
   },
-  "keywords": [],
+  "keywords": [
+    "mcp",
+    "csv",
+    "restcsv"
+  ],
   "author": "",
-  "license": "ISC",
-  "description": "",
+  "license": "MIT",
+  "description": "MCP Server for RestCSV",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.8.0",
     "axios": "^1.8.4",
@@ -18,5 +22,8 @@
   "devDependencies": {
     "@types/node": "^22.14.0",
     "typescript": "^5.8.3"
+  },
+  "bin": {
+    "restcsv-mcp-server": "./bin.js"
   }
 }
