@@ -2,6 +2,9 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 import axios from 'axios';
+import fs from 'fs';
+import FormData from 'form-data';
+import { Readable } from 'stream';
 
 // Create an MCP server
 const server = new McpServer({
@@ -166,11 +169,41 @@ server.tool("list_csvs",
 // Tool: Store CSV
 server.tool("store_csv",
   {
-    csv: z.string().describe("The CSV data")
+    file: z.string().describe("The CSV file to store"),
+    contents: z.string().describe("The contents of the CSV file to store")
   },
-  async ({ csv }) => {
+  async ({ file, contents }) => {
+
+    const formData = new FormData();
+    const filename = file.split('/').pop() || 'file.csv';
+
+    // Check if file exists in path
+    if (!fs.existsSync(file) && contents) {
+      const readable = new Readable();
+      readable._read = () => {}; // _read is required but you can noop it
+      readable.push(contents);
+      readable.push(null); // Signals the end of the stream
+      formData.append('csv', readable, { filename });
+    } else {
+      const fileStream = fs.createReadStream(file);  
+      formData.append('csv', fileStream, { filename });
+    }
+
+
+    // return {
+    //   content: [{ type: "text", text: String(JSON.stringify(formData.getHeaders())) }]
+    // }
+
+    /**/
     try {
-      const response = await api.post("/csvs", { csv });
+
+      // upload the csv as form data
+      const response = await api.post("/csvs", formData, {
+        headers: {
+          ...formData.getHeaders(),
+         'Content-Type': 'multipart/form-data'
+        }
+      });
       return {
         content: [{ type: "text", text: String(JSON.stringify(response.data)) }]
       };
@@ -179,6 +212,7 @@ server.tool("store_csv",
         content: [{ type: "text", text: `Error: ${error.message}` }]
       };
     }
+    /**/
   }
 );
 
