@@ -4,7 +4,7 @@ import fs from 'fs';
 const filePath = path.join(process.cwd(), 'build', 'index.js');
 
 // look for any env variables inside the file
-const envVariables = [];
+const envVariables = {}
 
 // Read the file
 const fileContent = fs.readFileSync(filePath, 'utf-8');
@@ -13,7 +13,7 @@ const fileContent = fs.readFileSync(filePath, 'utf-8');
 const envRegex = /process\.env\.(\w+)/g;
 let match;
 while ((match = envRegex.exec(fileContent)) !== null) {
-    envVariables.push({ [match[1]]: '<REPLACE>' });
+    envVariables[match[1]] = '<REPLACE>';
 }
 
 const structure = {
