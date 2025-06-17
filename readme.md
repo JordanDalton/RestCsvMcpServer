@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/jordandalton-restcsvmcpserver-badge.png)](https://mseep.ai/app/jordandalton-restcsvmcpserver)
+
 # REST CSV MCP Server
 
 This was generated using [mcpgen](https://mcpgen.jordandalton.com/).
